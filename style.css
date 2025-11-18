@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #222;
+    color: #fff;
+}
+
+#container {
+    display: flex;
+    height: 100vh;
+}
+
+#controls {
+    width: 300px;
+    background: #333;
+    padding: 10px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+#controls h1 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+#controls label {
+    display: block;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+#controls textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+#canvas-container {
+    flex: 1;
+}

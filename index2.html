@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Visual Poem Editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        font-family: "Inter", sans-serif;
+        background: #121212;
+        color: #fff;
+      }
+      #controls {
+        width: 300px;
+        padding: 20px;
+        background: #1e1e1e;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow-y: auto;
+        height: 100vh;
+        box-sizing: border-box;
+      }
+      #controls label {
+        font-size: 14px;
+        margin-bottom: 3px;
+        opacity: 0.8;
+      }
+      #controls input,
+      #controls select,
+      #controls textarea,
+      #controls button {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      #textInput {
+        height: 150px;
+        resize: none;
+        font-family: monospace;
+        background: #2b2b2b;
+        color: white;
+        border: none;
+        padding: 10px;
+      }
+      input[type="range"] {
+        width: 100%;
+      }
+      button {
+        background: #3a3a3a;
+        color: white;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+      button:hover {
+        background: #555;
+      }
+      #canvas-container {
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+      }
+      video#bgVideo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      input#videoUpload {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="controls">
+      <label for="textInput">Poema</label>
+      <textarea id="textInput" placeholder="Escribí tu poema acá..."></textarea>
+
+      <label for="fontSelect">Tipografía</label>
+      <select id="fontSelect">
+        <option>Courier New</option>
+        <option>Georgia</option>
+        <option>Arial</option>
+        <option>Times New Roman</option>
+        <option>Verdana</option>
+      </select>
+
+      <label for="sizeSlider">Tamaño del texto</label>
+      <input type="range" id="sizeSlider" min="10" max="100" value="30" />
+
+      <label for="colorPicker">Color</label>
+      <input type="color" id="colorPicker" value="#ffffff" />
+
+      <label for="wordRotationSlider">Rotación por palabra</label>
+      <input type="range" id="wordRotationSlider" min="-180" max="180" value="0" />
+
+      <label for="letterRotationSlider">Rotación por letra</label>
+      <input type="range" id="letterRotationSlider" min="-180" max="180" value="0" />
+
+      <label for="wordSpacingSlider">Espaciado entre palabras</label>
+      <input type="range" id="wordSpacingSlider" min="0" max="200" value="50" />
+
+      <label for="lineSpacingSlider">Interlineado</label>
+      <input type="range" id="lineSpacingSlider" min="20" max="200" value="60" />
+
+      <label for="modeSelect">Modo visual</label>
+      <select id="modeSelect">
+        <option value="linear">Lineal</option>
+        <option value="spiral">Espiral</option>
+        <option value="dna">ADN</option>
+        <option value="float">Flotante</option>
+        <option value="kaleidoscope">Caleidoscopio</option>
+        <option value="mirror">Espejo dinámico</option>
+        <option value="flow">Flujo Perlin</option>
+        <option value="grow">Click & Grow</option>
+      </select>
+
+      <label for="speedSlider">Velocidad</label>
+      <input type="range" id="speedSlider" min="0" max="5" step="0.1" value="1" />
+
+      <label for="glitchSlider">Nivel de glitch</label>
+      <input type="range" id="glitchSlider" min="0" max="10" value="2" />
+
+      <label for="mouseInteractionSelect">Interacción con el mouse</label>
+      <select id="mouseInteractionSelect">
+        <option value="none">Ninguna</option>
+        <option value="break">Romper</option>
+        <option value="pull">Atraer</option>
+        <option value="repel">Repeler</option>
+        <option value="drag">Arrastrar</option>
+      </select>
+
+      <label><input type="checkbox" id="darkModeToggle" /> Modo oscuro</label>
+
+      <button id="resetBtn">Reiniciar</button>
+      <button id="exportBtn">Exportar PNG</button>
+
+      <!-- Video upload -->
+      <label for="videoUpload">Video de fondo</label>
+      <input type="file" id="videoUpload" accept="video/*" />
+    </div>
+
+    <div id="canvas-container">
+      <video id="bgVideo" loop muted></video>
+    </div>
+
+    <script src="sketch2.js"></script>
+  </body>
+</html>
